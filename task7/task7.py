@@ -22,7 +22,14 @@ def read_file(file, isjson=False):
             else:
                  data[info[0]].update({ info[1] : info[2] })
     return data
-        
+
+def print_exports():
+    for country, products in exports.items():
+        print(f'{country}:')
+        for product, weight in products.items():
+            print(f'   {product} - {weight}')
+        print('-' * 40)
+
 EXPORTS_FILE = os.getcwd() + '\\task7\\input-json.txt'
 exports = read_file(EXPORTS_FILE, isjson=True)
 print(exports)
@@ -31,5 +38,9 @@ while True:
     cmd = input('Введите команду > ')
     if cmd == 'exit':
         exit(0)
-    
-    
+    splt = cmd.split()
+    if splt[0] not in ['add', 'list', 'export']:
+        print('Неверная команда')
+        continue 
+    if splt[0] == 'list':
+        print_exports()
