@@ -10,8 +10,7 @@ import json
 def read_file(file, isjson=False):
     if isjson:
         with open(file, encoding='utf-8') as json_file:
-            return json.load(json_file)
-
+            return json.load(json_file)     
     data = {}
     with open(file, encoding='utf-8') as f:
         rows = f.readlines()
